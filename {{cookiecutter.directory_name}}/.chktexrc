@@ -1,0 +1,6 @@
+# Disable checking in the preamble.
+# Switch off warnings 3 and 8, which may give too many false positives.
+CmdLine
+{
+    -H0 -n3 -n8
+}
