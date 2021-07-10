@@ -1,6 +1,10 @@
 # Disable checking in the preamble.
-# Switch off warnings 3 and 8, which may give too many false positives.
+# Disable warnings 3 and 8, which may give too many false positives.
+# - Warning 3: You should enclose the previous parenthesis with '{}'.
+# - Warning 8: Wrong length of dash may have been used.
+# Disable warning 38, which may be right or may be wrong.
+# - Warning 38: You should not use punctuation in front of/after quotes.
 CmdLine
 {
-    -H0 -n3 -n8
+    -H0 -n3 -n8 -n38
 }
