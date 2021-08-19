@@ -25,6 +25,9 @@ The default `.chktexrc` in this template ignores the following warnings:
       > desired between letters, but occasionally an n-dash (double
       > dash) is required. This is the case for theorems named after
       > two people e.g. Jordan–Hölder."
+- Warning 24: Delete this space to maintain correct pagereferences.
+    * [TeX - LaTeX Stack Exchange: When is leading/opening whitespace of a line
+      in a tex file important?](https://tex.stackexchange.com/a/264115)
 - Warning 38: You should not use punctuation in front of/after quotes.
     * [Debian Bug report logs - #224939: chktex: punctuation in front of quotes](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=224939)
     * [[texhax] chktex: false positives](https://tug.org/pipermail/texhax/2003-December/001423.html)
