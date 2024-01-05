@@ -9,6 +9,6 @@ trim_trailing_whitespace = true
 [{Makefile,*.mk}]
 indent_style = tab
 
-[*.{json,tex}]
+[*.{bib,cls,json,sty,tex}]
 indent_size = 2
 indent_style = space
