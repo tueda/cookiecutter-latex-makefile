@@ -32,3 +32,4 @@ if "which" not in dir(shutil):
 if shutil.which("git"):
     subprocess.call(["git", "init"])
     subprocess.call(["git", "add", "."])
+    subprocess.call(["git", "add", "-f", ".vscode"])
