@@ -12,7 +12,9 @@
       "name": "make",
       "command": "make",
       "args": [
-        "%DOC%.pdf"
+        "-C",
+        "%DIR%",
+        "%DOCFILE%.pdf"
       ]
     }
   ]
