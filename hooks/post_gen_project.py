@@ -3,7 +3,7 @@
 try:
     from typing import TYPE_CHECKING
 except ImportError:
-    TYPE_CHECKING = False
+    TYPE_CHECKING = False  # type: ignore[misc]
 
 if TYPE_CHECKING:
     from typing import Optional  # noqa: F401
@@ -17,8 +17,6 @@ if "which" not in dir(shutil):
     # https://stackoverflow.com/a/9877856
     def __which(cmd):
         # type: (str) -> Optional[str]
-        import os
-
         path = os.getenv("PATH")
         if path is None:
             return None
