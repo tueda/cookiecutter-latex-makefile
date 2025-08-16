@@ -10,9 +10,11 @@ target-version = "py37"
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
-    "D203",  # pydocstyle, one-blank-line-before-class
-    "D213",  # pydocstyle, multi-line-summary-second-line
-    "ANN",  # flake8-annotations
-    "INP",  # flake8-no-pep420
-    "PTH",  # flake8-use-pathlib
+    "COM812", # flake8-commas, missing-trailing-comma, conflicts with formatter
+    "D203",   # pydocstyle, one-blank-line-before-class, incompatible with D211
+    "D213",   # pydocstyle, multi-line-summary-second-line, incompatible with D212
+    "ISC001", # flake8-implicit-str-concat, single-line-implicit-string-concatenation, conflicts with formatter
+    "ANN",    # flake8-annotations
+    "INP",    # flake8-no-pep420
+    "PTH",    # flake8-use-pathlib
 ]
