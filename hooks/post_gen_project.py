@@ -1,34 +1,8 @@
 """Scripts to run after the project generation."""
 
-try:
-    from typing import TYPE_CHECKING
-except ImportError:
-    TYPE_CHECKING = False  # type: ignore[misc]
-
-if TYPE_CHECKING:
-    from typing import Optional  # noqa: F401
-
 import os
 import shutil
 import subprocess
-
-if "which" not in dir(shutil):
-    # Simplified implementation of shutil.which() for Python < 3.3.
-    # https://stackoverflow.com/a/9877856
-    def __which(cmd):
-        # type: (str) -> Optional[str]
-        path = os.getenv("PATH")
-        if path is None:
-            return None
-
-        for p in path.split(os.path.pathsep):
-            cmd_path = os.path.join(p, cmd)
-            if os.path.exists(cmd_path) and os.access(cmd_path, os.X_OK):
-                return cmd_path
-
-        return None
-
-    shutil.which = __which  # type: ignore[assignment]
 
 
 def remove_if(path, cond):
