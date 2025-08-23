@@ -1,22 +1,24 @@
 """Scripts to run after the project generation."""
 
+from __future__ import annotations
+
 import os
 import shutil
 import subprocess
+from pathlib import Path
 
 
-def remove_if(path, cond):
-    # type: (str, bool) -> None
+def remove_if(path: str | Path, cond: bool) -> None:  # noqa: FBT001
     """Remove the file/directory if the condition is met."""
+    path = Path(path)
     if cond:
-        if os.path.isfile(path):
-            os.remove(path)
-        elif os.path.isdir(path):
+        if path.is_file() or path.is_symlink():
+            path.unlink()
+        elif path.is_dir():
             shutil.rmtree(path)
 
 
-def run_git(*args):
-    # type: (*str) -> None
+def run_git(*args: str) -> None:
     """Run a Git command with the given arguments."""
     subprocess.call(["git", *args])  # noqa: S603, S607
 
@@ -26,10 +28,9 @@ def run_git(*args):
 for path, _, files in os.walk("."):
     for name in files:
         if name.endswith(".jinja"):
-            os.rename(
-                os.path.join(path, name),
-                os.path.join(path, name[: -len(".jinja")]),
-            )
+            old_path = Path(path) / name
+            new_path = Path(path) / name[: -len(".jinja")]
+            old_path.rename(new_path)
 
 # Remove tool-specific config files based on user selection.
 
