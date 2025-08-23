@@ -8,5 +8,9 @@ Silent
     \columnbreak
     \itshape
     \mainmatter
+    \makeglossaries
+    \printbibliography
+    \printglossaries
+    \printunsrtglossaries
     \tikz
 }
