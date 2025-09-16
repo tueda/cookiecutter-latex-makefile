@@ -1,0 +1,33 @@
+name: Check-Update
+
+on:
+  schedule:
+    # Runs twice a day.
+    - cron: 0 3 * * *
+    - cron: 0 15 * * *
+  workflow_dispatch:
+
+jobs:
+  check-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v5
+
+      - name: Check for updates
+        run: |
+          makefile_version=$(git ls-remote --tags --sort=v:refname https://github.com/tueda/makefile4latex.git | tail -n 1 | sed 's|.*refs/tags/v||')
+          echo "MAKEFILE_VERSION=$makefile_version" >>$GITHUB_ENV
+          jq --arg v "$makefile_version" '.["_makefile_version"] = $v' cookiecutter.json >cookiecutter.json.tmp && mv cookiecutter.json.tmp cookiecutter.json
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: create-pull-request/check-update
+          delete-branch: true
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          commit-message: |
+            chore: makefile4latex ${{ env.MAKEFILE_VERSION }}
+          title: |
+            [create-pull-request] chore: makefile4latex ${{ env.MAKEFILE_VERSION }}
